@@ -1,10 +1,13 @@
 import socket
 import time
+import random
+import json
 from random import randrange, uniform, randint
+
 c = socket.socket()
 
 c.connect(('localhost',9876))
-t_end = time.time() + 60 * 1
+
 # name = "shyam"
 
 def fn():
@@ -15,7 +18,7 @@ def fn():
         return val
     elif(x==2):
         #humi
-        val=uniform(30,60)
+        val=randrange(30,60)
         return val
     else:
         #general
@@ -23,11 +26,39 @@ def fn():
         return val
 
 
+def fn_d(name):
+    if(name == "TEMPERATURE"):
+        y= {
+            "T":"2121"
+        }
+        return y
+    else:
+        y= {
+            "name":"John",
+            "age":30,
+            "cars":["Ford", "BMW", "Fiat"]
+            }
+        return y
 
+def fn_topic():
+    topic_list = ["TEMPERATURE", "HUMIDITY", "GENERAL"]
+    return random.choice(topic_list)
+
+t_end = time.time() + 60 * 1
 while time.time() < t_end:
     # val = uniform(0, 15)
-    name = str(fn())
+    topic_name=fn_topic()
+    name = { 
+        "Topic": topic_name,
+        "Data": fn_d(topic_name)
+    }
     # print(randrange(10))
-    c.send(bytes(name,'utf-8'))
-    print(c.recv(1024).decode())
+    y=json.dumps(name) # json to string
+
+    c.send(bytes(y,'utf-8'))
+    print(c.recv(8192).decode())
     time.sleep(1)
+
+
+
+
