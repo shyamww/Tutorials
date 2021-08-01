@@ -2,6 +2,7 @@ import socket
 import time
 import random
 import json
+import string
 from random import randrange, uniform, randint
 
 c = socket.socket()
@@ -25,8 +26,21 @@ def fn():
         val=uniform(0,10)
         return val
 
+def fn_random_string():
+    res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
+    return res
 
 def fn_d(name):
+    switcher = {
+        "TEMPERATURE": uniform(273,373),
+        "HUMIDITY": {
+            "name":"John",
+            "age":30,
+            "cars":["Ford", "BMW", "Fiat"]
+            },
+        "GENERAL": fn_random_string()
+    }
+    return switcher.get(name, "nothing")
     if(name == "TEMPERATURE"):
         y= {
             "T":"2121"
