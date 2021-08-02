@@ -41,18 +41,18 @@ def fn_d(name):
         "GENERAL": fn_random_string()
     }
     return switcher.get(name, "nothing")
-    if(name == "TEMPERATURE"):
-        y= {
-            "T":"2121"
-        }
-        return y
-    else:
-        y= {
-            "name":"John",
-            "age":30,
-            "cars":["Ford", "BMW", "Fiat"]
-            }
-        return y
+    # if(name == "TEMPERATURE"):
+    #     y= {
+    #         "T":"2121"
+    #     }
+    #     return y
+    # else:
+    #     y= {
+    #         "name":"John",
+    #         "age":30,
+    #         "cars":["Ford", "BMW", "Fiat"]
+    #         }
+    #     return y
 
 def fn_topic():
     topic_list = ["TEMPERATURE", "HUMIDITY", "GENERAL"]
