@@ -8,7 +8,7 @@ s= socket.socket()
 print('Socket created')
 s.bind(('localhost', 9876))
 s.listen(10)
-print('waiting for clients....')
+print('waiting for clients....') 
 
 # to publish data to mqtt topic
 def mqtt_publisher(topicName,payload_json):
