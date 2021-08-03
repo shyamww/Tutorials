@@ -7,9 +7,6 @@ class Simple{
     static Integer size_of_parking_lot;
 
 
-
-
-
     static void fn_park_new_car(String car_number, String car_colour){
         //adding new car
         Integer slot_num=q.poll();
@@ -51,7 +48,6 @@ class Simple{
             System.out.println("Slot number is greater than the soze of the parking lot");
         }
 
-
     }
     static void fn_registration_numbers_for_cars_with_colour(String s){
         Integer ck=0;
@@ -91,7 +87,6 @@ class Simple{
             System.out.println("Not Found");
         }
 
-
     }
     static void fn_slot_number_for_registration_number(String s){
         Integer ck=0;
@@ -125,9 +120,6 @@ class Simple{
         for (int i=0;i<arr2.size();i++) {
             System.out.println(reg_number_to_colour.get(arr2.get(i)));
         }
-        
-
-                    
 
     }
     
@@ -137,12 +129,9 @@ class Simple{
         String ck="";
 
         do{
-            // System.out.print("\nEnter a string: ");  
             String str= sc.nextLine();           
             String[] words = str.split("\\s+");
-            // System.out.print("You have entered: "+str);
-            // System.out.print(" words"+ words.length);
-
+            
             if(words.length==3){//new car is added
                 if(q.size()>0)fn_park_new_car(words[1],words[2]);
                 else{
@@ -153,19 +142,18 @@ class Simple{
                 String a=words[0];
                 String b=words[1];
                 if(a.equals("create_parking_lot")){
-                // if(a.equals("c")){
                     fn_create_parking_lot(words[1]);
                 }
-                else if(a.equals("leave")){ //done
+                else if(a.equals("leave")){ 
                     fn_leave(b);
                 }
-                else if(a.equals("registration_numbers_for_cars_with_colour")){ //done
+                else if(a.equals("registration_numbers_for_cars_with_colour")){ 
                     fn_registration_numbers_for_cars_with_colour(b);
                 }
-                else if(a.equals("slot_numbers_for_cars_with_colour")){ //done
+                else if(a.equals("slot_numbers_for_cars_with_colour")){ 
                     fn_slot_numbers_for_cars_with_colour(b);
                 }
-                else if(a.equals("slot_number_for_registration_number")){ //done
+                else if(a.equals("slot_number_for_registration_number")){ 
                     fn_slot_number_for_registration_number(b);
                 }
             }
@@ -186,41 +174,11 @@ class Simple{
                     
                 }
             }
-            
-            // for(int i=0;i<words.length;i++){
-            //     System.out.print("loop: "+words[i]);
-            // }
 
         }while(ck!="exit");
-
-
     
     }  
 }  
-
-
-
- 
-
-
-
-
-// create_parking_lot 5
-// park r1 a
-// park r2 b
-// park r3 c
-// park r4 a
-// status
-// see
-// leave 3
-// park r5 a
-// status
-// see
-// registration_numbers_for_cars_with_colour a
-// slot_numbers_for_cars_with_colour  ac
-// slot_number_for_registration_number r55555
-
-
 
 
 
@@ -241,3 +199,27 @@ class Simple{
 // slot_number_for_registration_number KA-01-HH-3141
 // slot_number_for_registration_number MH-04-AY-1111
 // exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
