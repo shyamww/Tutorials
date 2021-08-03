@@ -53,8 +53,11 @@ class Simple{
             }
             
         }
-        else{
-            System.out.println("Slot number is greater than the soze of the parking lot");
+        else if(n>size_of_parking_lot){
+            System.out.println("Slot number is greater than the size of the parking lot");
+        }
+        else if(n<1){
+            System.out.println("Slot number 0 is not there in the parking lot");
         }
 
 
