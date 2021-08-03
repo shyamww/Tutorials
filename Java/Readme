@@ -1,3 +1,5 @@
 Run by:
 1. javac filename.java
 2. java Simple
+
+Then proved your first command(eg. create_parking_lot n )
