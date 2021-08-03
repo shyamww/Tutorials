@@ -24,9 +24,11 @@ def mqtt_publisher(topicName,payload_json):
 # mqtt_publisher("CAT","meauu")
 
 
-t_end = time.time() + 60 * 1
 c, addr = s.accept()
+
+t_end = time.time() + 60 * 1
 while time.time() < t_end:
+# while True:
     name = c.recv(8192).decode()
     y = json.loads(name)
     z=y["Topic"]

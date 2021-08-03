@@ -60,6 +60,7 @@ def fn_topic():
 
 t_end = time.time() + 60 * 1
 while time.time() < t_end:
+# while True:
     # val = uniform(0, 15)
     topic_name=fn_topic()
     name = { 
