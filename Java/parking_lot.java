@@ -43,7 +43,7 @@ class Simple{
                 slot_to_reg_num.remove(n);
                 reg_number_to_colour.remove(car_num);
                 System.out.println("Slot number "+n+" is free");
-                System.out.println("The size of the queue is: " + q.size());
+                // System.out.println("The size of the queue is: " + q.size());
             }
             
         }
@@ -197,6 +197,11 @@ class Simple{
     
     }  
 }  
+
+
+
+ 
+
 
 
 
