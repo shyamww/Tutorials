@@ -29,12 +29,11 @@ while True:
 
     if(type(data_for_this_topic) != type("strin")):
         data_for_this_topic=str(data_for_this_topic)
-        
+
     if(len(topic_name)>0 and len(data_for_this_topic)>0):
         c.send(bytes((str(data_for_this_topic) +' added to '+str(topic_name) ), 'utf-8'))
         mqtt_publisher(topic_name,data_for_this_topic)
     else:
+        print("Nothing Published")
         c.send(bytes('Topic, data are empty', 'utf-8'))
     time.sleep(1)
-
-# c.close()
