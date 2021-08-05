@@ -6,7 +6,6 @@ import time
 UDP_MQTT_PUBLISH_PORT = 12345
 UDP_SERVER_IP = 'localhost'
 
-# s= socket.socket()
 sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)      # For UDP
 
 print('Socket created')
@@ -23,24 +22,29 @@ def mqtt_publisher(received_data,payload_json):
     except Exception as e:
         print("error {0}".format(e))
 
-# c, addr = s.accept()
- 
 while True:
-    # name = c.recv(8192).decode()
-    # received_data = json.loads(name)
+    packet_from_socket = sock.recvfrom(8192)	
+    data_received = packet_from_socket[0]
+    data = data_received.decode()
+    addr = packet_from_socket[1]
+    received_data = json.loads(data) 
 
-    data,addr = sock.recvfrom(8192)	
-    received_data = json.loads(data)
-    topic_name=received_data["Topic"]
+    topic_name = received_data["Topic"]
     data_for_this_topic = received_data["Data"]
 
     if(type(data_for_this_topic) != type("string")):
-        data_for_this_topic=str(data_for_this_topic)
+        data_for_this_topic = str(data_for_this_topic)
 
     if(len(topic_name)>0 and len(data_for_this_topic)>0):
-        c.send(bytes((str(data_for_this_topic) +' added to '+str(topic_name) ), 'utf-8'))
+        reply = data_for_this_topic + " added to topic " + topic_name
+        sock.sendto(reply.encode(), addr)
         mqtt_publisher(topic_name,data_for_this_topic)
     else:
         print("Nothing Published")
-        c.send(bytes('Topic, data are empty', 'utf-8'))
-    # time.sleep(1)
+        reply = "Topic, data are empty"
+        sock.sendto(reply.encode(), addr)
+
+
+
+
+  
