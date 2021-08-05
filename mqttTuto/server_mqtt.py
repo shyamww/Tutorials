@@ -2,11 +2,13 @@ import paho.mqtt.publish as publish
 import socket
 import json
 import time
-from random import randrange, uniform 
+
+UDP_MQTT_PUBLISH_PORT = 5552
+UDP_SERVER_IP = 'localhost'
 
 s= socket.socket()
 print('Socket created')
-s.bind(('localhost', 9876))
+s.bind((UDP_SERVER_IP , UDP_MQTT_PUBLISH_PORT))
 s.listen(10)
 print('waiting for clients....') 
 
@@ -27,7 +29,7 @@ while True:
     topic_name=received_data["Topic"]
     data_for_this_topic = received_data["Data"]
 
-    if(type(data_for_this_topic) != type("strin")):
+    if(type(data_for_this_topic) != type("string")):
         data_for_this_topic=str(data_for_this_topic)
 
     if(len(topic_name)>0 and len(data_for_this_topic)>0):
