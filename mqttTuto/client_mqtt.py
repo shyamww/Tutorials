@@ -28,35 +28,26 @@ def fn():
 
 def fn_random_string():
     res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
+    # res = "abcdefghijklmnopqrstuvwxyaabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyaaabbbcccdddeeefffggghhhiiijjjkkklllmmmnnnooopppqqqrrrssstttuuuvvvwwwxxxyyyaaaabbbbccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnooooppppqqqqrrrrssssttttuuuuvvvvwwwwxxxxyyyyaaaaabbbbbcccccdddddeeeeefffffggggghhhhhiiiiijjjjjkkkkklllllmmmmmnnnnnooooopppppqqqqqrrrrrssssstttttuuuuuvvvvvwwwwwxxxxxyyyyyaaaaaabbbbbbccccccddddddeeeeeeffffffgggggghhhhhhiiiiiijjjjjjkkkkkkllllllmmmmmmnnnnnnooooooppppppqqqqqqrrrrrrssssssttttttuuuuuuvvvvvvwwwwwwxxxxxxyyyyyyaaaaaaabbbbbbbcccccccdddddddeeeeeeefffffffggggggghhhhhhhiiiiiiijjjjjjjkkkkkkklllllllmmmmmmmnnnnnnnooooooopppppppqqqqqqqrrrrrrrssssssstttttttuuuuuuuvvvvvvvwwwwwwwxxxxxxxyyyyyyyaaaaaaaabbbbbbbbccccccccddddddddeeeeeeeeffffffffgggggggghhhhhhhhiiiiiiiijjjjjjjjkkkkkkkkllllllllmmmmmmmmnnnnnnnnooooooooppppppppqqqqqqqqrrrrrrrrssssssssttttttttuuuuuuuuvvvvvvvvwwwwwwwwxxxxxxxxyyyyyyyyaaaaaaaaabbbbbbbbbcccccccccdddddddddeeeeeeeeefffffffffggggggggghhhhhhhhhiiiiiiiiijjjjjjjjjkkkkkkkkklllllllllmmmmmmmmmnnnnnnnnnooooooooopppppppppqqqqqqqqqrrrrrrrrrssssssssstttttttttuuuuuuuuuvvvvvvvvvwwwwwwwwwxxxxxxxxxyyyyyyyyyaaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeffffffffffgggggggggghhhhhhhhhhiiiiiiiiiijjjjjjjjjjkkkkkkkkkkllllllllllmmmmmmmmmmnnnnnnnnnnooooooooooppppppppppqqqqqqqqqqrrrrrrrrrrssssssssssttttttttttuuuuuuuuuuvvvvvvvvvvwwwwwwwwwwxxxxxxxxxxyyyyyyyyyy123456789112233445566778899111222333444555666777888999111122223333444455556666777788889999111112222233333444445555566666777778888899999111111222222333333444444555555666666777777888888999999111111122222223333333444444455555556666666777777788888889999999111111112222222233333333444444445555555566666666777777778888888899999999111111111222222222333333333444444444555555555666666666777777777888888888999999999111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999"
     return res
 
 def fn_d(name):
     switcher = {
         "TEMPERATURE": uniform(273,373),
         "HUMIDITY": {
-            "name":"John",
+            "name":"shyam",
             "age":30,
             "cars":["Ford", "BMW", "Fiat"]
             },
-        "GENERAL": fn_random_string()
+        "GENERAL": fn_random_string(),
+        "": "testing default"
     }
     return switcher.get(name, "nothing")
-    # if(name == "TEMPERATURE"):
-    #     y= {
-    #         "T":"2121"
-    #     }
-    #     return y
-    # else:
-    #     y= {
-    #         "name":"John",
-    #         "age":30,
-    #         "cars":["Ford", "BMW", "Fiat"]
-    #         }
-    #     return y
 
 def fn_topic():
-    topic_list = ["TEMPERATURE", "HUMIDITY", "GENERAL"]
+    topic_list = ["TEMPERATURE", "HUMIDITY", "GENERAL", ""]
     return random.choice(topic_list)
+    # return "GENERAL"
 
 t_end = time.time() + 60 * 1
 while time.time() < t_end:

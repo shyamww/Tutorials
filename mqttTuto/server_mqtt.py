@@ -11,30 +11,29 @@ s.listen(10)
 print('waiting for clients....') 
 
 # to publish data to mqtt topic
-def mqtt_publisher(topicName,payload_json):
+def mqtt_publisher(received_data,payload_json):
     payload = json.dumps(payload_json)
-    # print("payload is: ",payload, type(payload))
-
     try:
-        print(topicName, payload)
-        publish.single(topicName,payload,hostname="mqtt.eclipseprojects.io")
+        print("Just published: "+ received_data, payload)
+        publish.single(received_data,payload,hostname="mqtt.eclipseprojects.io")
     except Exception as e:
         print("error {0}".format(e))
 
-# mqtt_publisher("CAT","meauu")
-
-
 c, addr = s.accept()
-
-t_end = time.time() + 60 * 1
-while time.time() < t_end:
-# while True:
+ 
+while True:
     name = c.recv(8192).decode()
-    y = json.loads(name)
-    z=y["Topic"]
-    val = y["Data"]
-    c.send(bytes((str(val) +' added to '+str(z) ), 'utf-8'))
-    mqtt_publisher(z,val)
-    time.sleep(1)
+    received_data = json.loads(name)
+    topic_name=received_data["Topic"]
+    data_for_this_topic = received_data["Data"]
 
-c.close()
+    if(type(data_for_this_topic) != type("strin")):
+        data_for_this_topic=str(data_for_this_topic)
+
+    if(len(topic_name)>0 and len(data_for_this_topic)>0):
+        c.send(bytes((str(data_for_this_topic) +' added to '+str(topic_name) ), 'utf-8'))
+        mqtt_publisher(topic_name,data_for_this_topic)
+    else:
+        print("Nothing Published")
+        c.send(bytes('Topic, data are empty', 'utf-8'))
+    time.sleep(1)
