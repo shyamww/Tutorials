@@ -5,12 +5,9 @@ import json
 import string
 from random import randrange, uniform, randint
 
-# c = socket.socket()
-sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM) 
-udp_host = socket.gethostname()	
-udp_port = 12345			    
+c = socket.socket()
 
-# c.connect(('localhost',9876))
+c.connect(('localhost',9876))
 
 # name = "shyam"
 
@@ -28,8 +25,6 @@ def fn():
         #general
         val=uniform(0,10)
         return val
-
-
 
 def fn_random_string():
     res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))
@@ -54,7 +49,6 @@ def fn_topic():
     return random.choice(topic_list)
     # return "GENERAL"
 
-
 t_end = time.time() + 60 * 1
 while time.time() < t_end:
 # while True:
@@ -66,13 +60,10 @@ while time.time() < t_end:
     }
     # print(randrange(10))
     y=json.dumps(name) # json to string
-    # c.send(bytes(y,'utf-8'))
-    sock.sendto(y,(udp_host,udp_port))
-    msgFromServer = sock.recvfrom(8192)
-    msg = "Message from server {}".format(msgFromServer[0])
-    # print(c.recv(8192).decode())
-    print(msg)
-    # time.sleep(1)
+
+    c.send(bytes(y,'utf-8'))
+    print(c.recv(8192).decode())
+    time.sleep(1)
 
 
 

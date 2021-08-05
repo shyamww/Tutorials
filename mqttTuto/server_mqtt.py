@@ -3,13 +3,15 @@ import socket
 import json
 import time
 
-UDP_MQTT_PUBLISH_PORT = 5552
+UDP_MQTT_PUBLISH_PORT = 12345
 UDP_SERVER_IP = 'localhost'
 
-s= socket.socket()
+# s= socket.socket()
+sock = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)      # For UDP
+
 print('Socket created')
-s.bind((UDP_SERVER_IP , UDP_MQTT_PUBLISH_PORT))
-s.listen(10)
+sock.bind((UDP_SERVER_IP , UDP_MQTT_PUBLISH_PORT))
+
 print('waiting for clients....') 
 
 # to publish data to mqtt topic
@@ -21,11 +23,14 @@ def mqtt_publisher(received_data,payload_json):
     except Exception as e:
         print("error {0}".format(e))
 
-c, addr = s.accept()
+# c, addr = s.accept()
  
 while True:
-    name = c.recv(8192).decode()
-    received_data = json.loads(name)
+    # name = c.recv(8192).decode()
+    # received_data = json.loads(name)
+
+    data,addr = sock.recvfrom(8192)	
+    received_data = json.loads(data)
     topic_name=received_data["Topic"]
     data_for_this_topic = received_data["Data"]
 
@@ -38,4 +43,4 @@ while True:
     else:
         print("Nothing Published")
         c.send(bytes('Topic, data are empty', 'utf-8'))
-    time.sleep(1)
+    # time.sleep(1)
